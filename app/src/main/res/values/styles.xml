@@ -1,0 +1,50 @@
+<resources>
+
+
+
+    <!-- Base application theme. -->
+    <!--
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!- - Customize your theme here. - ->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+        -->
+
+    <!-- 自定义AppBaseTheme -->
+    <style name="AppBaseTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!--选中状态icon的颜色和字体颜色-->
+        <!--<item name="android:fitsSystemWindows">true</item>-->
+        <item name="colorPrimary">@android:color/holo_blue_dark</item>
+        <item name="colorPrimaryDark">@android:color/holo_blue_dark</item>
+        <item name="colorAccent">@android:color/holo_green_light</item>
+        <!--正常状态下字体颜色和icon颜色-->
+        <item name="android:textColorPrimary">@android:color/white</item>
+    </style>
+
+    <!-- 应用全局样式 -->
+    <style name="AppTheme" parent="AppBaseTheme">
+
+    </style>
+
+    <!-- 底部状态栏统一样式 -->
+    <style name="footbar">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:gravity">center</item>
+        <item name="android:background">@null</item>
+        <item name="android:button">@null</item>
+    </style>
+
+    <!-- 底部RadioButton统一样式 -->
+    <style name="main_footbar_radio" parent="footbar">
+        <item name="android:paddingTop">5dp</item>
+        <item name="android:paddingBottom">5dp</item>
+        <item name="android:drawablePadding">3dp</item>
+        <item name="android:textSize">@dimen/text_size_11</item>
+        <item name="android:textColor">@drawable/footer_text_color</item>
+    </style>
+
+</resources>

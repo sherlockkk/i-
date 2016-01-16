@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">i江理</string>
+
+    <string name="menu_name">菜单</string>
+
+    <string name="footbar_text_home">首页</string>
+    <string name="footbar_text_campus">校园</string>
+    <string name="footbar_text_message">消息</string>
+    <string name="footbar_text_mime">我的</string>
+</resources>
