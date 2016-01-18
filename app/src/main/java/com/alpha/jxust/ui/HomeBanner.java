@@ -17,8 +17,11 @@ import android.widget.TextView;
 
 import com.alpha.jxust.R;
 import com.alpha.jxust.model.TopBannerEntity;
+import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +30,7 @@ import java.util.List;
  * @author SongJian
  * @created 2016/1/17.
  * @e-mail 1129574214@qq.com
- *
+ * <p>
  * 主页广告栏ViewPager布局
  */
 public class HomeBanner extends FrameLayout implements View.OnClickListener {
@@ -36,6 +39,7 @@ public class HomeBanner extends FrameLayout implements View.OnClickListener {
     private Context context;
     private boolean isAutoPlay;
     private int currentItem;
+    private int count;
     private Handler handler = new Handler();
     private ImageLoader mImageLoader;
     private DisplayImageOptions options;
@@ -57,34 +61,132 @@ public class HomeBanner extends FrameLayout implements View.OnClickListener {
 
     public HomeBanner(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        mImageLoader = ImageLoader.getInstance();
-        options = new DisplayImageOptions.Builder().cacheInMemory(true).cacheOnDisk(true).build();
         this.context = context;
-
+        initImageLoader(context);
         initView();
 
     }
+
+    public void initImageLoader(Context context) {
+        ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(
+                context).threadPriority(Thread.NORM_PRIORITY - 2)
+                .denyCacheImageMultipleSizesInMemory()
+                .diskCacheFileNameGenerator(new Md5FileNameGenerator())
+                .tasksProcessingOrder(QueueProcessingType.LIFO)
+                .writeDebugLogs().build();
+        ImageLoader.getInstance().init(config);
+        options = new DisplayImageOptions.Builder()
+                .cacheInMemory(true)
+                .cacheOnDisk(true)
+                .build();
+        mImageLoader = ImageLoader.getInstance();
+    }
+
 
     private void initView() {
         views = new ArrayList<>();
         iv_dots = new ArrayList<>();
     }
 
+
     public void setTopBannerEntities(List<TopBannerEntity> topBannerEntities) {
         this.topBannerEntities = topBannerEntities;
-        reset();
+
     }
 
-    private void reset() {
+    public void setImagesUrl(String[] imagesUrl) {
+        initLayout();
+        initImgFromNet(imagesUrl);
+        //setAtt();
+    }
+
+    public void setImagesRes(int[] imagesRes) {
+        initLayout();
+        initImgFromRes(imagesRes);
+        //setAtt();
+
+    }
+
+    private void initImgFromRes(int[] imagesRes) {
+        count = imagesRes.length;
+        for (int i = 0; i < count; i++) {
+            ImageView iv_dot = new ImageView(context);
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.WRAP_CONTENT,
+                    LinearLayout.LayoutParams.WRAP_CONTENT);
+            params.leftMargin = 5;
+            params.rightMargin = 5;
+            iv_dot.setImageResource(R.drawable.dot_blur);
+            ll_dot.addView(iv_dot, params);
+            iv_dots.add(iv_dot);
+        }
+        iv_dots.get(0).setImageResource(R.drawable.dot_focus);
+
+        for (int i = 0; i <= count + 1; i++) {
+            View banner_view = LayoutInflater.from(context).inflate(R.layout.banner_content_layout, null);
+            ImageView imageView_banner_title = (ImageView) banner_view.findViewById(R.id.iv_banner_title);
+            TextView textView_banner_title = (TextView) banner_view.findViewById(R.id.tv_banner_title);
+            imageView_banner_title.setScaleType(ImageView.ScaleType.CENTER_CROP);
+            //  iv.setScaleType(ImageView.ScaleType.FIT_XY);
+//            iv.setBackgroundResource(R.drawable.loading);
+            if (i == 0) {
+                imageView_banner_title.setImageResource(imagesRes[count - 1]);
+            } else if (i == count + 1) {
+                imageView_banner_title.setImageResource(imagesRes[0]);
+            } else {
+                imageView_banner_title.setImageResource(imagesRes[i - 1]);
+            }
+            views.add(banner_view);
+        }
+        setAtt();
+    }
+
+    private void initImgFromNet(String[] imagesUrl) {
+        count = imagesUrl.length;
+        for (int i = 0; i < count; i++) {
+            ImageView iv_dot = new ImageView(context);
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.WRAP_CONTENT,
+                    LinearLayout.LayoutParams.WRAP_CONTENT);
+            params.leftMargin = 5;
+            params.rightMargin = 5;
+            iv_dot.setImageResource(R.drawable.dot_blur);
+            ll_dot.addView(iv_dot, params);
+            iv_dots.add(iv_dot);
+        }
+        iv_dots.get(0).setImageResource(R.drawable.dot_focus);
+
+        for (int i = 0; i <= count + 1; i++) {
+            View banner_view = LayoutInflater.from(context).inflate(R.layout.banner_content_layout, null);
+            ImageView imageView_banner_title = (ImageView) banner_view.findViewById(R.id.iv_banner_title);
+            TextView textView_banner_title = (TextView) banner_view.findViewById(R.id.tv_banner_title);
+            imageView_banner_title.setScaleType(ImageView.ScaleType.CENTER_CROP);
+//            iv.setBackgroundResource(R.mipmap.loading);
+            if (i == 0) {
+                mImageLoader.displayImage(imagesUrl[count - 1], imageView_banner_title, options);
+            } else if (i == count + 1) {
+                mImageLoader.displayImage(imagesUrl[0], imageView_banner_title, options);
+            } else {
+                mImageLoader.displayImage(imagesUrl[i - 1], imageView_banner_title, options);
+            }
+            views.add(banner_view);
+        }
+        setAtt();
+    }
+
+    private void initLayout() {
         views.clear();
-        initUI();
-    }
-
-    private void initUI() {
-        View view = LayoutInflater.from(context).inflate(R.layout.banner_layout, this, true);
+        View view = LayoutInflater.from(context).inflate(
+                R.layout.banner_layout, this, true);
         viewPager = (ViewPager) view.findViewById(R.id.vp_banner);
         ll_dot = (LinearLayout) view.findViewById(R.id.ll_dot);
         ll_dot.removeAllViews();
+        view.setOnClickListener(this);
+        //views.add(view);
+    }
+
+    private void initUI() {
+        initLayout();
 
         int len = topBannerEntities.size();
         for (int i = 0; i < len; i++) {
@@ -101,6 +203,7 @@ public class HomeBanner extends FrameLayout implements View.OnClickListener {
             View banner_view = LayoutInflater.from(context).inflate(R.layout.banner_content_layout, null);
             ImageView imageView_banner_title = (ImageView) banner_view.findViewById(R.id.iv_banner_title);
             TextView textView_banner_title = (TextView) banner_view.findViewById(R.id.tv_banner_title);
+            imageView_banner_title.setScaleType(ImageView.ScaleType.CENTER_CROP);
 
             if (i == 0) {
                 mImageLoader.displayImage(topBannerEntities.get(len - 1).getImage(), imageView_banner_title, options);
@@ -112,18 +215,23 @@ public class HomeBanner extends FrameLayout implements View.OnClickListener {
                 mImageLoader.displayImage(topBannerEntities.get(len - 1).getImage(), imageView_banner_title, options);
                 textView_banner_title.setText(topBannerEntities.get(len - 1).getTitle());
             }
+            views.add(banner_view);
 
-            view.setOnClickListener(this);
-            views.add(view);
         }
+        setAtt();
+
+
+    }
+
+    private void setAtt() {
         viewPager.setAdapter(new MyPagerAdapter());
         viewPager.setFocusable(true);
         viewPager.setCurrentItem(1);
         currentItem = 1;
         viewPager.addOnPageChangeListener(new MyOnPagerChangeListener());
         startAutoPlay();
-
     }
+
 
     private void startAutoPlay() {
         isAutoPlay = true;
@@ -134,7 +242,8 @@ public class HomeBanner extends FrameLayout implements View.OnClickListener {
         @Override
         public void run() {
             if (isAutoPlay) {
-                currentItem = currentItem % (topBannerEntities.size() + 1) + 1;
+                //currentItem = currentItem % (topBannerEntities.size() + 1) + 1;
+                currentItem = currentItem % (count + 1) + 1;
                 if (currentItem == 1) {
                     viewPager.setCurrentItem(currentItem, false);
                     handler.post(runnable);
@@ -142,8 +251,8 @@ public class HomeBanner extends FrameLayout implements View.OnClickListener {
                     viewPager.setCurrentItem(currentItem);
                     handler.postDelayed(runnable, DELAY_LONG);
                 }
-            }else {
-                handler.postDelayed(runnable,DELAY_LONG);
+            } else {
+                handler.postDelayed(runnable, DELAY_LONG);
             }
         }
     };
@@ -181,11 +290,13 @@ public class HomeBanner extends FrameLayout implements View.OnClickListener {
 
         @Override
         public void onPageSelected(int position) {
-            for (int i = 0; i < views.size(); i++) {
+            for (int i = 0; i < iv_dots.size(); i++) {
                 if (i == position - 1) {
                     iv_dots.get(i).setImageResource(R.drawable.dot_focus);
+                }else {
+                    iv_dots.get(i).setImageResource(R.drawable.dot_blur);
                 }
-                iv_dots.get(i).setImageResource(R.drawable.dot_blur);
+
             }
         }
 
@@ -193,9 +304,15 @@ public class HomeBanner extends FrameLayout implements View.OnClickListener {
         public void onPageScrollStateChanged(int state) {
             switch (state) {
                 case 0:
+//                    if (viewPager.getCurrentItem() == 0) {
+//                        viewPager.setCurrentItem(topBannerEntities.size(), false);
+//                    } else if (viewPager.getCurrentItem() == topBannerEntities.size() + 1) {
+//                        viewPager.setCurrentItem(1, false);
+//                    }
+
                     if (viewPager.getCurrentItem() == 0) {
-                        viewPager.setCurrentItem(topBannerEntities.size(), false);
-                    } else if (viewPager.getCurrentItem() == topBannerEntities.size() + 1) {
+                        viewPager.setCurrentItem(count, false);
+                    } else if (viewPager.getCurrentItem() == count + 1) {
                         viewPager.setCurrentItem(1, false);
                     }
                     currentItem = viewPager.getCurrentItem();
@@ -221,9 +338,9 @@ public class HomeBanner extends FrameLayout implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        if (onItemClickListener != null){
+        if (onItemClickListener != null) {
             TopBannerEntity entity = topBannerEntities.get(viewPager.getCurrentItem() - 1);
-            onItemClickListener.click(v,entity);
+            onItemClickListener.click(v, entity);
         }
     }
 }

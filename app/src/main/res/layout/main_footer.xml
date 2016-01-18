@@ -9,7 +9,7 @@
     <RadioGroup
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/group"
+        android:id="@+id/radio_group"
         android:orientation="horizontal">
         <RadioButton
             android:id="@+id/foot_bar_home"

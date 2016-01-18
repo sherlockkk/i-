@@ -1,9 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:id="@+id/ll_fm_home">
+    <com.alpha.jxust.ui.HomeBanner
+        android:id="@+id/home_banner"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"></com.alpha.jxust.ui.HomeBanner>
 
-<TextView
-    android:layout_width="match_parent"
-    android:layout_height="match_parent" />
+    <TextView
+        android:id="@+id/tv_tips1"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/space_20"
+        android:layout_margin="@dimen/space_7"
+        android:text="最新新闻"
+        android:textSize="@dimen/text_size_15"/>
+
+    <ListView
+        android:id="@+id/iv_news_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></ListView>
 </LinearLayout>
