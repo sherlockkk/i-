@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:id="@+id/ll_fm_home"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/ll_fm_home">
+    android:orientation="vertical">
+
     <com.alpha.jxust.ui.HomeBanner
         android:id="@+id/home_banner"
         android:layout_width="match_parent"
@@ -14,10 +16,18 @@
         android:layout_height="@dimen/space_20"
         android:layout_margin="@dimen/space_7"
         android:text="最新新闻"
-        android:textSize="@dimen/text_size_15"/>
+        android:textSize="@dimen/text_size_15" />
 
-    <ListView
-        android:id="@+id/iv_news_list"
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/srl"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"></ListView>
+        android:layout_height="match_parent">
+
+        <ListView
+            android:id="@+id/lv_news_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></ListView>
+
+    </android.support.v4.widget.SwipeRefreshLayout>
+
 </LinearLayout>

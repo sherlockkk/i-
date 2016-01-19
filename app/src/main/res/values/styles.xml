@@ -1,7 +1,6 @@
 <resources>
 
 
-
     <!-- Base application theme. -->
     <!--
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
@@ -47,4 +46,38 @@
         <item name="android:textColor">@drawable/footer_text_color</item>
     </style>
 
+    <!-- 比较常用的宽高 -->
+    <style name="wrap_wrap">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="wrap_fill">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">fill_parent</item>
+    </style>
+
+    <style name="fill_wrap">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="fill_fill">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">fill_parent</item>
+    </style>
+
+
+    <!-- news_list_text_info_style-->
+    <style name="news_list_text_info" parent="wrap_wrap">
+        <item name="android:textSize">@dimen/text_size_11</item>
+        <item name="android:textColor">@color/day_infoTextColor</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+    <!-- news_list_text_title_style-->
+    <style name="list_text_title" parent="@style/wrap_wrap">
+        <item name="android:textColor">@color/day_textColor</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">normal</item>
+    </style>
 </resources>

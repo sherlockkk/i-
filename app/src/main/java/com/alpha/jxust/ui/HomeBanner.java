@@ -30,7 +30,7 @@ import java.util.List;
  * @author SongJian
  * @created 2016/1/17.
  * @e-mail 1129574214@qq.com
- * <p>
+ * <p/>
  * 主页广告栏ViewPager布局
  */
 public class HomeBanner extends FrameLayout implements View.OnClickListener {
@@ -97,6 +97,12 @@ public class HomeBanner extends FrameLayout implements View.OnClickListener {
     public void setImagesUrl(String[] imagesUrl) {
         initLayout();
         initImgFromNet(imagesUrl);
+        //setAtt();
+    }
+
+    public void setImagesUrl(String[] imagesUrl, String[] title) {
+        initLayout();
+        initImgFromNet(imagesUrl, title);
         //setAtt();
     }
 
@@ -174,6 +180,42 @@ public class HomeBanner extends FrameLayout implements View.OnClickListener {
         setAtt();
     }
 
+    private void initImgFromNet(String[] imagesUrl, String[] title) {
+        count = imagesUrl.length;
+        for (int i = 0; i < count; i++) {
+            ImageView iv_dot = new ImageView(context);
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.WRAP_CONTENT,
+                    LinearLayout.LayoutParams.WRAP_CONTENT);
+            params.leftMargin = 5;
+            params.rightMargin = 5;
+            iv_dot.setImageResource(R.drawable.dot_blur);
+            ll_dot.addView(iv_dot, params);
+            iv_dots.add(iv_dot);
+        }
+        iv_dots.get(0).setImageResource(R.drawable.dot_focus);
+
+        for (int i = 0; i <= count + 1; i++) {
+            View banner_view = LayoutInflater.from(context).inflate(R.layout.banner_content_layout, null);
+            ImageView imageView_banner_title = (ImageView) banner_view.findViewById(R.id.iv_banner_title);
+            TextView textView_banner_title = (TextView) banner_view.findViewById(R.id.tv_banner_title);
+            imageView_banner_title.setScaleType(ImageView.ScaleType.CENTER_CROP);
+//            iv.setBackgroundResource(R.mipmap.loading);
+            if (i == 0) {
+                mImageLoader.displayImage(imagesUrl[count - 1], imageView_banner_title, options);
+                textView_banner_title.setText(title[count - 1]);
+            } else if (i == count + 1) {
+                mImageLoader.displayImage(imagesUrl[0], imageView_banner_title, options);
+                textView_banner_title.setText(title[0]);
+            } else {
+                mImageLoader.displayImage(imagesUrl[i - 1], imageView_banner_title, options);
+                textView_banner_title.setText(title[i - 1]);
+            }
+            views.add(banner_view);
+        }
+        setAtt();
+    }
+
     private void initLayout() {
         views.clear();
         View view = LayoutInflater.from(context).inflate(
@@ -182,7 +224,6 @@ public class HomeBanner extends FrameLayout implements View.OnClickListener {
         ll_dot = (LinearLayout) view.findViewById(R.id.ll_dot);
         ll_dot.removeAllViews();
         view.setOnClickListener(this);
-        //views.add(view);
     }
 
     private void initUI() {
@@ -293,7 +334,7 @@ public class HomeBanner extends FrameLayout implements View.OnClickListener {
             for (int i = 0; i < iv_dots.size(); i++) {
                 if (i == position - 1) {
                     iv_dots.get(i).setImageResource(R.drawable.dot_focus);
-                }else {
+                } else {
                     iv_dots.get(i).setImageResource(R.drawable.dot_blur);
                 }
 
