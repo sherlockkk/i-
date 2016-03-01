@@ -9,10 +9,10 @@ import com.alpha.jxust.base.BaseFragment;
 
 /**
  * @author SongJian
- * @created 2016/1/18.
+ * @created 2016/2/2.
  * @e-mail 1129574214@qq.com
  */
-public class MimeFragment extends BaseFragment {
+public class MarketApplyFragment extends BaseFragment {
     @Override
     protected View initView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return null;

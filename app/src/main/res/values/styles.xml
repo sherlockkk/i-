@@ -70,7 +70,7 @@
 
     <!-- news_list_text_info_style-->
     <style name="news_list_text_info" parent="wrap_wrap">
-        <item name="android:textSize">@dimen/text_size_11</item>
+        <item name="android:textSize">@dimen/text_size_16</item>
         <item name="android:textColor">@color/day_infoTextColor</item>
         <item name="android:gravity">center_vertical</item>
     </style>

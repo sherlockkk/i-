@@ -7,4 +7,18 @@
     <string name="footbar_text_campus">校园</string>
     <string name="footbar_text_message">消息</string>
     <string name="footbar_text_mime">我的</string>
+
+    <string name="myapplytitle">我的应用</string>
+    <string name="marketapplytitle">市场应用</string>
+
+    <string name="login_username_hint">请输入用户名&#8230;</string>
+    <string name="login_password_hint">请输入密码&#8230;</string>
+    <string name="login_email_hint">请再次输入密码&#8230;</string>
+    <string name="login">登录</string>
+    <string name="register">注册</string>
+    <string name="register_txt1">还没有账号？</string>
+    <string name="register_txt2">立即注册 ></string>
+    <string name="login_account">账号 </string>
+    <string name="login_pwd">密码 </string>
+    <string name="login_email">确认密码 </string>
 </resources>

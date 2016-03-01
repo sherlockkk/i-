@@ -131,8 +131,9 @@ public class HomeBanner extends FrameLayout implements View.OnClickListener {
         for (int i = 0; i <= count + 1; i++) {
             View banner_view = LayoutInflater.from(context).inflate(R.layout.banner_content_layout, null);
             ImageView imageView_banner_title = (ImageView) banner_view.findViewById(R.id.iv_banner_title);
-            TextView textView_banner_title = (TextView) banner_view.findViewById(R.id.tv_banner_title);
             imageView_banner_title.setScaleType(ImageView.ScaleType.CENTER_CROP);
+            TextView textView_banner_title = (TextView) banner_view.findViewById(R.id.tv_banner_title);
+            //textView_banner_title.setBackgroundResource(R.color.gray);
             //  iv.setScaleType(ImageView.ScaleType.FIT_XY);
 //            iv.setBackgroundResource(R.drawable.loading);
             if (i == 0) {
@@ -223,6 +224,7 @@ public class HomeBanner extends FrameLayout implements View.OnClickListener {
         viewPager = (ViewPager) view.findViewById(R.id.vp_banner);
         ll_dot = (LinearLayout) view.findViewById(R.id.ll_dot);
         ll_dot.removeAllViews();
+        // ll_dot.setBackgroundResource(R.color.gray);
         view.setOnClickListener(this);
     }
 

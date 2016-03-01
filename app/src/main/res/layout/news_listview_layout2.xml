@@ -19,7 +19,8 @@
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        android:orientation="vertical">
 
         <LinearLayout
             android:id="@+id/ll_title"
@@ -52,7 +53,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/tv_news_description"
             android:layout_gravity="bottom"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="5dp"
             android:layout_marginTop="5dp"
             android:orientation="horizontal">
 
@@ -65,8 +66,9 @@
 
             <TextView
                 android:id="@+id/tv_news_list_releaseTime"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content" />
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_size_10"/>
 
             <ImageView
                 android:layout_width="15dp"
@@ -77,7 +79,8 @@
             <TextView
                 android:id="@+id/tv_news_list_clicked"
                 android:layout_width="100dp"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_size_10"/>
 
         </LinearLayout>
     </LinearLayout>

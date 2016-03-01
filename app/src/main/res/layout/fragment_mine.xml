@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="185dp"
+        android:background="@drawable/banner_01">
+        <ImageView
+            android:id="@+id/iv_mine_user_icon"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:src="@mipmap/ic_launcher"/>
+        <TextView
+            android:id="@+id/tv_mine_nickname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="简单浪漫"
+        android:textSize="20sp"
+        android:gravity="center_horizontal"/>
+       <RelativeLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:gravity="center_horizontal">
+           <TextView
+               android:id="@+id/tv_mine_loc"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_margin="5dp"
+               android:text="广东"
+               android:textSize="15sp" />
+           <TextView
+               android:id="@+id/tv_mine_sex"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:text="女"
+               android:textSize="15sp"
+               android:layout_margin="5dp"
+               android:layout_toRightOf="@+id/tv_mine_loc" />
+       </RelativeLayout>
+        <TextView
+            android:id="@+id/tv_mine_signature"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="你若安好，便是晴天"
+            android:textSize="18dp"
+            android:gravity="center_horizontal"
+            android:layout_marginTop="3dp"/>
+
+    </LinearLayout>
+    <ListView
+        android:id="@+id/lv_mine_options"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></ListView>
+</LinearLayout>

@@ -141,6 +141,7 @@
     <color name="day_windows_bg">#fafafa</color>
     <color name="day_edit_color">#333333</color>
     <color name="day_edit_hit_color">#999999</color>
+    <color name="light_news_item">#FFF0F0F0</color>
 
     <!-- night -->
     <color name="night_colorPrimary">#008000</color>
@@ -153,5 +154,10 @@
     <color name="night_windows_bg">#1f1f1f</color>
     <color name="night_edit_color">#666666</color>
     <color name="night_edit_hit_color">#999999</color>
+
+
+    <color name="base_color_text_white">#ffffff</color>
+    <color name="base_color_text_gray">#9fa0a0</color>
+    <color name="color_theme">#489cfa</color>
 
 </resources>

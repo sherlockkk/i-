@@ -8,12 +8,13 @@
         android:id="@+id/iv_banner_title"
         android:scaleType="centerCrop"/>
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/tv_banner_title"
         android:layout_gravity="bottom"
         android:layout_marginBottom="2dp"
-        android:padding="10dp"
-        android:textSize="@dimen/text_size_18"
-        android:textColor="@android:color/white"/>
+        android:padding="5dp"
+        android:textSize="@dimen/text_size_14"
+        android:textColor="@android:color/white"
+        android:background="@color/light_menu_index_background"/>
 </FrameLayout>

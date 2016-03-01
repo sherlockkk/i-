@@ -1,4 +1,4 @@
-package com.alpha.jxust.tools;
+package com.alpha.jxust.utils;
 
 import android.content.Context;
 import android.net.ConnectivityManager;

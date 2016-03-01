@@ -76,4 +76,8 @@
     <dimen name="space_3">0.0dip</dimen>
     <dimen name="space_2">2.0dip</dimen>
     <dimen name="space_1">0.0dip</dimen>
+
+
+    <dimen name="height_title">48.0dip</dimen>
+
 </resources>

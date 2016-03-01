@@ -5,7 +5,7 @@
     android:clickable="true">
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="?actionBarSize"
+        android:layout_height="150dp"
         android:id="@+id/ll_menu"
         android:orientation="vertical"
         android:background="@color/light_menu_header"
@@ -15,7 +15,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:layout_marginLeft="15dp"
-            android:layout_marginTop="10dp">
+            android:layout_marginTop="50dp">
             <ImageView
                 android:layout_width="36dp"
                 android:layout_height="36dp"
@@ -49,6 +49,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@android:color/white"
-        android:divider="@android:color/transparent"
+
         android:scrollbars="none"></ListView>
 </LinearLayout>
+    <!--
+            android:divider="@android:color/transparent"
+        -->

@@ -1,5 +1,6 @@
 package com.alpha.jxust.model;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -78,7 +79,9 @@ public class NewsList {
             return list;
         }
 
-        public static class ListEntity {
+        public static class ListEntity implements Serializable{
+
+
 
 
             /**
@@ -91,6 +94,7 @@ public class NewsList {
              */
 
 
+            private int type;
             private String content;
             private int id;
             private String title;
@@ -98,6 +102,12 @@ public class NewsList {
             private int click;
             private String photo;
 
+
+
+
+            public void setType(int type) {
+                this.type = type;
+            }
 
             public void setContent(String content) {
                 this.content = content;
@@ -121,6 +131,10 @@ public class NewsList {
 
             public void setPhoto(String photo) {
                 this.photo = photo;
+            }
+
+            public int getType() {
+                return type;
             }
 
             public String getContent() {

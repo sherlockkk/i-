@@ -2,11 +2,6 @@ package com.alpha.jxust.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.AnimRes;
-import android.support.annotation.IdRes;
-import android.support.annotation.Nullable;
-import android.support.annotation.StringRes;
-import android.support.annotation.StyleRes;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -14,15 +9,14 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 import android.widget.RadioGroup;
 
 import com.alpha.jxust.R;
-import com.alpha.jxust.base.BaseFragment;
+import com.alpha.jxust.db.CacheDbHelper;
 import com.alpha.jxust.fragment.CampusFragment;
 import com.alpha.jxust.fragment.HomeFragment;
 import com.alpha.jxust.fragment.MessageFragment;
-import com.alpha.jxust.fragment.MimeFragment;
+import com.alpha.jxust.fragment.MineFragment;
 import com.alpha.jxust.ui.HomeBanner;
 
 import java.util.Arrays;
@@ -43,16 +37,18 @@ public class MainActivity extends AppCompatActivity {
     private Fragment homeFragment = new HomeFragment();
     private Fragment campusFragment = new CampusFragment();
     private Fragment messageFragment = new MessageFragment();
-    private Fragment mimeFragment = new MimeFragment();
+    private Fragment mimeFragment = new MineFragment();
     private List<Fragment> fragmentList = Arrays.asList(homeFragment, campusFragment, messageFragment, mimeFragment);
 
     private FragmentManager fragmentManager;
+    private CacheDbHelper cacheDbHelper;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        cacheDbHelper = new CacheDbHelper(this,1);
         fragmentManager = getSupportFragmentManager();
         findViews();
         initViews();
@@ -62,7 +58,6 @@ public class MainActivity extends AppCompatActivity {
     private void findViews() {
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawerlayout);
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
-        mHomeBanner = (HomeBanner) findViewById(R.id.home_banner);
     }
 
     private void initViews() {
@@ -114,6 +109,10 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         fragmentTransaction.commitAllowingStateLoss();
+    }
+
+    public CacheDbHelper getCacheDbHelper(){
+        return cacheDbHelper;
     }
 
     @Override
