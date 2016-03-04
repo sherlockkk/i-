@@ -25,7 +25,12 @@ import com.alpha.jxust.R;
 import com.alpha.jxust.base.BaseFragment;
 import com.alpha.jxust.tools.ToolLog;
 import com.alpha.jxust.utils.CacheUtils;
+import com.alpha.jxust.utils.StatusNetAsyncTask;
+import com.alpha.jxust.utils.StatusUtil;
+import com.avos.avoscloud.AVFile;
+import com.avos.avoscloud.AVUser;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -58,6 +63,8 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
     private final int GET_AVATA_FROM_ALBUM = 1;
     private final int GET_AVATA_FROM_CAMERA = 2;
     private final int PHOTO_ZOOM = 3;
+
+    AVUser user ;
 
 
     @Override
@@ -268,7 +275,7 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
                     }
                     break;
                 case GET_AVATA_FROM_CAMERA:
-                    String files = CacheUtils.getCacheDirectory(mActivity, true, "icon") + dateTime;
+                    final String files = CacheUtils.getCacheDirectory(mActivity, true, "icon") + dateTime;
                     File file = new File(files);
                     if (file.exists() && file.length() > 0) {
                         Uri uri = Uri.fromFile(file);
@@ -282,12 +289,28 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
                     if (data != null) {
                         Bundle extras = data.getExtras();
                         if (extras != null) {
-                            Bitmap bitmap = extras.getParcelable("data");
-
+                            final Bitmap bitmap = extras.getParcelable("data");
                             String iconUrl = saveToSdCard(bitmap);
                             ToolLog.i(TAG, ">>>>>>iconUrl>>>>>>>>>>>>" + iconUrl);
-                            imageView_userIcon.setImageBitmap(bitmap);
-                            //updateIcon(iconUrl);
+                            //先压缩bitmap,将压缩后的bitmap转成字节流异步提交给服务器保存
+                            new StatusNetAsyncTask(mActivity) {
+                                @Override
+                                protected void doInBack() throws Exception {
+                                    ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                                    bitmap.compress(Bitmap.CompressFormat.PNG,80,stream);
+                                    byte[] bytes= stream.toByteArray();
+                                    AVFile avatar = new AVFile("avatar_file_",bytes);
+                                    avatar.save();
+                                    user = AVUser.getCurrentUser();
+                                    user.put("avatar",avatar);
+                                    user.save();
+                                }
+
+                                @Override
+                                protected void onPost(Exception e) {
+                                    StatusUtil.displayAvatar(user,imageView_userIcon);
+                                }
+                            }.execute();
                         }
                     }
                     break;

@@ -5,7 +5,7 @@
 
     <string name="footbar_text_home">首页</string>
     <string name="footbar_text_campus">校园</string>
-    <string name="footbar_text_message">消息</string>
+    <string name="footbar_text_message">发现</string>
     <string name="footbar_text_mime">我的</string>
 
     <string name="myapplytitle">我的应用</string>
@@ -21,4 +21,12 @@
     <string name="login_account">账号 </string>
     <string name="login_pwd">密码 </string>
     <string name="login_email">确认密码 </string>
+
+
+
+    <string name="xlistview_footer_hint_normal">查看更多</string>
+    <string name="xlistview_footer_hint_ready">松开载入更多</string>
+    <string name="listEmptyHint">无数据</string>
+    <string name="hardLoading">努力加载中...</string>
+    <string name="noMore">没有更多了</string>
 </resources>

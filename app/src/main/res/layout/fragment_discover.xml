@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <View
+        style="@style/h_line"
+        android:layout_marginTop="25dp" />
+
+    <LinearLayout
+        android:id="@+id/ll_circle"
+        style="@style/option_item_rl" >
+
+        <ImageView
+            style="@style/option_item_img"
+            android:contentDescription="@null"
+            android:layout_marginRight="@dimen/space_10"
+            android:background="@mipmap/ic_launcher"/>
+
+        <TextView
+            style="@style/option_item_text"
+            android:text="校友圈" />
+
+    </LinearLayout>
+
+    <View
+        style="@style/h_line" />
+</LinearLayout>

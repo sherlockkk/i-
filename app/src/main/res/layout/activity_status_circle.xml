@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <com.alpha.jxust.base.BaseListView
+        android:id="@+id/status_List"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:listSelector="#00000000"
+        android:divider="@android:color/transparent" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_publish"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right|bottom"
+
+        android:layout_margin="40dp"/>
+    <!--android:src="@drawable/btn_publish"-->
+</FrameLayout>

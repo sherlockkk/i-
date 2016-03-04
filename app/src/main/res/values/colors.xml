@@ -160,4 +160,7 @@
     <color name="base_color_text_gray">#9fa0a0</color>
     <color name="color_theme">#489cfa</color>
 
+    <color name="tree_green">#5CB98D</color>
+    <color name="dark_tree_green">#428666</color>
+
 </resources>

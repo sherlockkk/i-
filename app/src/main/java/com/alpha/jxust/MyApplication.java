@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.Context;
 import android.text.NoCopySpan;
 
+import com.avos.avoscloud.AVOSCloud;
 import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
 import com.nostra13.universalimageloader.cache.memory.impl.WeakMemoryCache;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -27,6 +28,8 @@ public class MyApplication extends Application {
 
         myApplication = this;
 
+        //LeanCloud组件初始化
+        AVOSCloud.initialize(this,Constants.APPID_LEANCLOUD,Constants.APPKEY_LEANCLOUD);
         //uil初始化
         initImageLoader(this);
 

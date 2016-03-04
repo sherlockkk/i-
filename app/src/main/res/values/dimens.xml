@@ -79,5 +79,6 @@
 
 
     <dimen name="height_title">48.0dip</dimen>
+    <dimen name="radius">5dp</dimen>
 
 </resources>

@@ -19,10 +19,9 @@ public abstract class BaseActivity extends FragmentActivity {
         initViews();
         findViews();
         initDatas();
-        setListeners();
     }
 
-    protected abstract void setListeners();
+
 
     protected abstract void initDatas();
 
@@ -30,6 +29,12 @@ public abstract class BaseActivity extends FragmentActivity {
 
     protected abstract void findViews();
 
+    /**
+     * Activity跳转
+     * @param target
+     * @param bundle
+     * @param finish
+     */
     public void startActivity(Class<? extends Activity> target,Bundle bundle,boolean finish){
         Intent intent = new Intent();
         intent.setClass(this,target);

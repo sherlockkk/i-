@@ -15,7 +15,7 @@ import com.alpha.jxust.R;
 import com.alpha.jxust.db.CacheDbHelper;
 import com.alpha.jxust.fragment.CampusFragment;
 import com.alpha.jxust.fragment.HomeFragment;
-import com.alpha.jxust.fragment.MessageFragment;
+import com.alpha.jxust.fragment.DiscoverFragment;
 import com.alpha.jxust.fragment.MineFragment;
 import com.alpha.jxust.ui.HomeBanner;
 
@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
     int curCursor;
     private Fragment homeFragment = new HomeFragment();
     private Fragment campusFragment = new CampusFragment();
-    private Fragment messageFragment = new MessageFragment();
+    private Fragment messageFragment = new DiscoverFragment();
     private Fragment mimeFragment = new MineFragment();
     private List<Fragment> fragmentList = Arrays.asList(homeFragment, campusFragment, messageFragment, mimeFragment);
 
@@ -53,6 +53,11 @@ public class MainActivity extends AppCompatActivity {
         findViews();
         initViews();
         initFootBar();
+    }
+
+    //复写onSaveInstanceState方法，不保存当前Fragment状态，以解决Fragment恢复现场重叠的bug
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
     }
 
     private void findViews() {

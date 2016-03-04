@@ -6,22 +6,44 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+
+
     <application
+        android:name=".MyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme" >
-        <activity android:name=".activity.MainActivity" >
+        android:theme="@style/AppTheme">
+        <!-- LeanCloud实时通信模块、推送（若使用该功能，需添加以下声明）START -->
+        <service android:name="com.avos.avoscloud.PushService"/>
+        <receiver android:name="com.avos.avoscloud.AVBroadcastReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+                <action android:name="android.intent.action.USER_PRESENT"/>
+            </intent-filter>
+        </receiver>
+        <!-- 实时通信模块、推送 END -->
+        <!-- 反馈组件（若使用该功能，需添加以下声明）START -->
+        <activity
+            android:name="com.avos.avoscloud.feedback.ThreadActivity" android:screenOrientation="portrait">
+        </activity>
+        <!-- 反馈组件 END -->
+        <activity android:name=".activity.MainActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.NewsDetailActivity"/>
-        <activity android:name=".activity.LoginActivity"/>
-        <activity android:name=".activity.RegisterActivity"/>
+        <activity android:name=".activity.NewsDetailActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".activity.LoginActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".activity.RegisterActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".activity.StatusCircleActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".activity.StatusPublishActivity" android:screenOrientation="portrait"/>
     </application>
 
 </manifest>
