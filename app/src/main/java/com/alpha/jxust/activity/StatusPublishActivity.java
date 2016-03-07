@@ -10,8 +10,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.alpha.jxust.Constants;
-import com.alpha.jxust.Controller.StatusController;
+import com.alpha.jxust.controller.StatusController;
 import com.alpha.jxust.R;
 import com.alpha.jxust.base.BaseActivity;
 import com.alpha.jxust.tools.ToolDialog;

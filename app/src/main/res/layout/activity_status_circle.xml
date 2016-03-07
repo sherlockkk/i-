@@ -2,12 +2,21 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <com.alpha.jxust.base.BaseListView
-        android:id="@+id/status_List"
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/srl_status"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:listSelector="#00000000"
-        android:divider="@android:color/transparent" />
+        android:layout_height="match_parent">
+
+        <kale.recycler.ExRecyclerView
+            android:id="@+id/rv_status"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent"
+            android:listSelector="#00000000"
+            android:divider="@android:color/transparent"
+             />
+
+    </android.support.v4.widget.SwipeRefreshLayout>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab_publish"

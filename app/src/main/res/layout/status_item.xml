@@ -4,16 +4,17 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@android:color/transparent"
-    android:padding="15dp">
+    android:background="@color/light_news_item">
 
     <android.support.v7.widget.CardView xmlns:app="http://schemas.android.com/apk/res-auto"
 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="15dp"
         android:foreground="?attr/selectableItemBackground"
+        android:background="@drawable/item_background_selector_light"
         app:cardCornerRadius="8dp"
-        app:cardElevation="15dp">
+        app:cardElevation="10dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -49,7 +50,7 @@
                     android:id="@+id/tv_timeView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="10dp"
                     android:text="2016-3-3 09:23:00"
                     android:textColor="@android:color/darker_gray"
                     android:textSize="11sp" />
@@ -63,7 +64,7 @@
                 android:layout_below="@id/ll_nameTime"
                 android:layout_margin="10dp"
                 android:minHeight="70dp"
-                android:orientation="vertical" />
+                android:orientation="vertical" >
 
             <LinearLayout
 
@@ -77,6 +78,8 @@
                     android:id="@+id/tv_statusText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:text="啦啦啦"
                     android:textSize="14sp" />
 
                 <ImageView
@@ -84,6 +87,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="150dp"
                     android:layout_marginTop="5dp" />
+            </LinearLayout>
+
             </LinearLayout>
 
 

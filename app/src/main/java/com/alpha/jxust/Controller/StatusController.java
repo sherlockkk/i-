@@ -1,4 +1,4 @@
-package com.alpha.jxust.Controller;
+package com.alpha.jxust.controller;
 
 import android.graphics.Bitmap;
 
@@ -74,11 +74,11 @@ public class StatusController {
     }
 
 
-    public static List<Status> getStatusDatas(long maxId, int limit) throws AVException {
+    public static List<Status> getStatusDatas( int limit) throws AVException {
         AVUser user = AVUser.getCurrentUser();
         AVStatusQuery q = AVStatus.inboxQuery(user, AVStatus.INBOX_TYPE.TIMELINE.toString());
         q.setLimit(limit);
-        q.setMaxId(maxId);
+        //q.setMaxId(maxId);
         q.orderByDescending(Constants.CREATED_AT);
         List<AVStatus> avStatuses = q.find();
         return fetchDetailsAndGetStatuses(avStatuses);

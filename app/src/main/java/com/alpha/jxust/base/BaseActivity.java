@@ -6,12 +6,15 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @author SongJian
  * @created 2016/1/16.
  * @e-mail 1129574214@qq.com
  */
-public abstract class BaseActivity extends FragmentActivity {
+public abstract class BaseActivity<T> extends FragmentActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,7 +25,6 @@ public abstract class BaseActivity extends FragmentActivity {
     }
 
 
-
     protected abstract void initDatas();
 
     protected abstract void initViews();
@@ -31,27 +33,30 @@ public abstract class BaseActivity extends FragmentActivity {
 
     /**
      * Activity跳转
+     *
      * @param target
      * @param bundle
      * @param finish
      */
-    public void startActivity(Class<? extends Activity> target,Bundle bundle,boolean finish){
+    public void startActivity(Class<? extends Activity> target, Bundle bundle, boolean finish) {
         Intent intent = new Intent();
-        intent.setClass(this,target);
-        if (bundle!=null){
-            intent.putExtra(getPackageName(),bundle);
+        intent.setClass(this, target);
+        if (bundle != null) {
+            intent.putExtra(getPackageName(), bundle);
         }
         startActivity(intent);
-        if (finish){
+        if (finish) {
             finish();
         }
     }
 
-    public Bundle getBundle(){
-        if (getIntent()!=null&&getIntent().hasExtra(getPackageName())){
+    public Bundle getBundle() {
+        if (getIntent() != null && getIntent().hasExtra(getPackageName())) {
             return getIntent().getBundleExtra(getPackageName());
-        }else{
+        } else {
             return null;
         }
     }
+
+
 }
